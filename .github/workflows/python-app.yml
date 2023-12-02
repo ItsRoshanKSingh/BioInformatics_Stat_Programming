@@ -14,11 +14,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # - uses: actions/checkout@v3
-      # - name: Set up Python 3.10
-      #   uses: actions/setup-python@v3
-      #   with:
-      #     python-version: "3.10"
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
       
       # - name: Install Python dependencies
       #   run: |
@@ -34,14 +34,3 @@ jobs:
       #   with:
       #     name: my-output-artifact
       #     path: output/
-      
-      # Load repo and install R
-    
-      - uses: actions/checkout@master
-      - uses: r-lib/actions/setup-r@master
-  
-      # Set-up R
-      - name: Install packages
-        run: |
-          R -e 'install.packages("tidyverse")'
-          R -e 'install.packages("rvest")'
