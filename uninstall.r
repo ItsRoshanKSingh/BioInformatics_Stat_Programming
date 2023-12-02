@@ -1,4 +1,4 @@
-# # Get the list of installed packages
+# Get the list of installed packages
 # installed_packages <- row.names(installed.packages())
 
 # # Remove each package
