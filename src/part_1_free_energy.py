@@ -35,8 +35,8 @@ def calculate():
             di_seq = "".join(current_pair)
             free_energy = get_free_energy(di_seq)
             energy_values.append(str(free_energy))
-
-    with open(os.path.join("output","files","free_energy.txt"), "w") as output_file:
+    
+    with open(os.path.join("output", "files", "free_energy.txt"), "w") as output_file:
         output_file.write(",".join(energy_values))
         print(
             f"{color.GREEN} \u2713 Free energy values added successfully to {color.YELLOW}'output\\files\\free_energy.txt'{color.RESET}"
