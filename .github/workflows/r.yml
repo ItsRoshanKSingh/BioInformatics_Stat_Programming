@@ -18,8 +18,13 @@ jobs:
       with:
         r-version: '4.1.0' # You can specify the version you need
 
-    # - name: Install dependencies
-    #   run: Rscript -e 'install.packages("your_package")' # Replace "your_package" with the actual package name
+    - name: Install dependencies
+      run: |
+        Rscript -e 'install.packages("BiocManager")'
+        Rscript -e 'BiocManager::install("seqLogo")'
+        Rscript -e 'BiocManager::install("Biostrings")'
 
     - name: Run R script
-      run: echo 'print("Hello, world!")' | R --vanilla
+      run: |
+       Rscript src/part_3_graphs.R
+       Rscript src/part_4_5.r
