@@ -7,7 +7,7 @@ class Output:
     def clean(folder_path="output"):
         print("\n", "#" * 20 + " Cleanup Started " + "#" * 20, "\n")
         try:
-            for filename in os.listdir("output\\files\\"):
+            for filename in os.listdir(os.path.join("output","files")):
                 print(
                     f"{color.YELLOW} Cleaning up Output folder...{color.RESET}",
                     end="\r",
@@ -17,7 +17,7 @@ class Output:
                     os.remove(file_path)
                     print(f"{color.RED} Deleted: {file_path}{color.RESET}")
 
-            for filename in os.listdir("output\\graph\\"):
+            for filename in os.listdir(os.path.join("output","graph")):
                 print(
                     f"{color.YELLOW} Cleaning up Output folder...{color.RESET}",
                     end="\r",

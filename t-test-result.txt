@@ -1,7 +1,0 @@
-T-Test Results:
---------------------------------------------------------
-t statistic:  29.4201 
-degrees of freedom:  251.0228 
-p-value:  2.532814e-83 
---------------------------------------------------------
-There is a statistically significant difference between promoter and non-promoter regions.
