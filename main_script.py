@@ -8,9 +8,9 @@ def main():
     print("\n", "#" * 25 + " Spec " + "#" * 26, "\n")
     part_1_free_energy.calculate()
 
-    from src import part_2_genomic_regions
+    # from src import part_2_genomic_regions
 
-    part_2_genomic_regions.extract()
+    # part_2_genomic_regions.extract()
 
 
 if __name__ == "__main__":
