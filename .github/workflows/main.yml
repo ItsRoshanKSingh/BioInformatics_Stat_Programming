@@ -50,6 +50,11 @@ jobs:
           key: ${{ runner.os }}-r-${{ hashFiles('**/*.r') }}
           restore-keys: |
             ${{ runner.os }}-r-
+      
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.1.0' 
 
       - name: Install R dependencies
         run: Rscript install_r_library.R
@@ -59,10 +64,7 @@ jobs:
           Rscript src/part_3_graphs.R
           Rscript src/part_4_5.r
       
-      - name: Set up R
-        uses: r-lib/actions/setup-r@v2
-        with:
-          r-version: '4.1.0' 
+      
 
       - name: Create artifact
         uses: actions/upload-artifact@v2
