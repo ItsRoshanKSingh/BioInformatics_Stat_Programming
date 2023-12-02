@@ -23,7 +23,7 @@ jobs:
         Rscript -e 'install.packages(c("BiocManager", "seqLogo"))'
         Rscript -e 'BiocManager::install("Biostrings")'
 
-    # - name: Run R script
-    #   run: |
-    #    Rscript src/part_3_graphs.R
-    #    Rscript src/part_4_5.r
+    - name: Run R script
+      run: |
+       Rscript src/part_3_graphs.R
+       Rscript src/part_4_5.r
