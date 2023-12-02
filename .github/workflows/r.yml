@@ -27,4 +27,4 @@ jobs:
     - name: Run R script
       run: |
        Rscript src/part_3_graphs.R
-      #  Rscript src/part_4_5.r
+       Rscript src/part_4_5.r
