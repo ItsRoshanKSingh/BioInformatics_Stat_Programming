@@ -2,7 +2,7 @@ import time
 from lib import color
 import os
 
-current_script_directory = os.path.dirname(os.path.abspath(__file__))
+# current_script_directory = os.path.dirname(os.path.abspath(__file__))
 
 def get_free_energy(di_seq: str):
     energy_mapping = {
@@ -31,7 +31,7 @@ def calculate():
     print(f"{color.YELLOW} scanning...{color.RESET}", end="\r")
 
     energy_values = []
-    with open(os.path.join(current_script_directory, 'resources', 'ecoli_k12.fna'), "r") as fasta_file:
+    with open(os.path.join('resources', 'ecoli_k12.fna'), "r") as fasta_file:
         fasta_seq = "".join(fasta_file.readlines()[1:]).replace("\n", "")
         for index, current_pair in enumerate(zip(fasta_seq, fasta_seq[1:])):
             di_seq = "".join(current_pair)
