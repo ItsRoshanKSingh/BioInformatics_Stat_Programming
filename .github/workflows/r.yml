@@ -18,11 +18,11 @@ jobs:
       with:
         r-version: '4.1.0' # You can specify the version you need
 
-    # - name: Install dependencies
-    #   run: |
-    #     Rscript -e 'install.packages("BiocManager")'
-    #     Rscript -e 'BiocManager::install("seqLogo")'
-    #     Rscript -e 'BiocManager::install("Biostrings")'
+    - name: Install dependencies
+      run: |
+        Rscript -e 'install.packages("BiocManager")'
+        Rscript -e 'BiocManager::install("seqLogo")'
+        Rscript -e 'BiocManager::install("Biostrings")'
 
     - name: Run R script
       run: |
