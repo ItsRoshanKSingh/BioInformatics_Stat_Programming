@@ -1,36 +1,57 @@
-# name: Bioinformatics Programming & Stats
+name: Bioinformatics Programming & Stats
 
-# on:
-#   push:
-#     branches: ["main"]
-#   pull_request:
-#     branches: ["main"]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
 
-# permissions:
-#   contents: read
+permissions:
+  contents: read
 
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - uses: actions/checkout@v3
-#       - name: Set up Python 3.10
-#         uses: actions/setup-python@v3
-#         with:
-#           python-version: "3.10"
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
       
-      # - name: Install Python dependencies
-      #   run: |
-      #     python -m pip install --upgrade pip
-      #     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      # - name: Run main Python script
-      #   run: |
-      #     python main_script.py
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.1.0'      
+    
+      - name: Install R dependencies
+        run: |
+          Rscript -e 'install.packages(c("BiocManager", "seqLogo"))'
+          Rscript -e 'BiocManager::install("Biostrings")'  
 
-      # - name: Create artifact
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: my-output-artifact
-      #     path: output/
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run main Python script
+        run: |
+          python main_script.py
+      
+      - name: Run R script
+        run: |
+         Rscript src/part_3_graphs.R
+         Rscript src/part_4_5.r
+
+      - name: Create artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-output-artifact
+          path: output/
