@@ -16,16 +16,10 @@ jobs:
     - name: Set up R
       uses: r-lib/actions/setup-r@v1
       with:
-        r-version: '4.1.0' # You can try using a different version that might be available
+        r-version: '4.1.0' # You can specify the version you need
 
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y r-base
+    # - name: Install dependencies
+    #   run: Rscript -e 'install.packages("your_package")' # Replace "your_package" with the actual package name
 
     - name: Run R script
-      run: |
-        echo 'print("Hello, world!")' | R --vanilla
-
-    # - name: Run R script
-    #   run: Rscript path/to/your/script.R
+      run: echo 'print("Hello, world!")' | R --vanilla
