@@ -5,4 +5,5 @@ if (!requireNamespace("BiocManager", quietly = TRUE)) {
 }
 
 BiocManager::install("seqLogo")
-BiocManager::install("Biostrings")
+# BiocManager::install("Biostrings")
+BiocManager::install("Biostrings",force = TRUE, dependencies = TRUE)
