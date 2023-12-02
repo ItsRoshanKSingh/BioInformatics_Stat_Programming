@@ -56,6 +56,7 @@ jobs:
       - name: Install R dependencies
         run: |
           Rscript -e 'install.packages(c("BiocManager", "seqLogo"), dependencies=TRUE, clean=TRUE)'
+          Rscript -e 'BiocManager::install("seqLogo")'
           Rscript -e 'BiocManager::install("Biostrings", dependencies=TRUE, clean=TRUE)'
         
 
