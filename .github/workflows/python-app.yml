@@ -35,7 +35,13 @@ jobs:
       #     name: my-output-artifact
       #     path: output/
       
-      - uses: r-lib/actions/setup-r@v3    
-      - name: print-message   
-        # Code to execute R script
-        run: Rscript -e 'print("Hello R World!")'
+      # Load repo and install R
+    
+      - uses: actions/checkout@master
+      - uses: r-lib/actions/setup-r@master
+  
+      # Set-up R
+      - name: Install packages
+        run: |
+          R -e 'install.packages("tidyverse")'
+          R -e 'install.packages("rvest")'
