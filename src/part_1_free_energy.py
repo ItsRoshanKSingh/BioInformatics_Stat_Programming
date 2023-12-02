@@ -2,8 +2,6 @@ import time
 from lib import color
 import os
 
-# current_script_directory = os.path.dirname(os.path.abspath(__file__))
-
 def get_free_energy(di_seq: str):
     energy_mapping = {
         "AA": -1.00,
@@ -38,7 +36,7 @@ def calculate():
             free_energy = get_free_energy(di_seq)
             energy_values.append(str(free_energy))
 
-    with open(os.path.join(current_script_directory, 'output","files","free_energy.txt'), "w") as output_file:
+    with open(os.path.join('output","files","free_energy.txt'), "w") as output_file:
         output_file.write(",".join(energy_values))
         print(
             f"{color.GREEN} \u2713 Free energy values added successfully to {color.YELLOW}'output\\files\\free_energy.txt'{color.RESET}"
