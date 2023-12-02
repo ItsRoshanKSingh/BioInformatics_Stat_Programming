@@ -1,24 +1,24 @@
-name: Bioinformatics Programming & Stats
+# name: Bioinformatics Programming & Stats
 
-on:
-  push:
-    branches: ["main"]
-  pull_request:
-    branches: ["main"]
+# on:
+#   push:
+#     branches: ["main"]
+#   pull_request:
+#     branches: ["main"]
 
-permissions:
-  contents: read
+# permissions:
+#   contents: read
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v3
-        with:
-          python-version: "3.10"
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Set up Python 3.10
+#         uses: actions/setup-python@v3
+#         with:
+#           python-version: "3.10"
       
       # - name: Install Python dependencies
       #   run: |
