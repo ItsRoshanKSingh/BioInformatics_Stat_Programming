@@ -55,8 +55,7 @@ jobs:
 
       - name: Install R dependencies
         run: |
-          Rscript -e 'install.packages(c("BiocManager", "seqLogo"))'
-          Rscript -e 'BiocManager::install("Biostrings")'  
+          Rscript  install_r_library.R
 
       - name: Run main Python script
         run: |
