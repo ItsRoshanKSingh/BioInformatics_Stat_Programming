@@ -35,19 +35,8 @@ jobs:
         run: |
           python main_script.py
 
-      - uses: actions/checkout@v3
-      - name: Set up R ${{ matrix.r-version }}
-        uses: r-lib/actions/setup-r@f57f1301a053485946083d7a45022b278929a78a
+      - name: Create artifact
+        uses: actions/upload-artifact@v2
         with:
-          r-version: ${{ matrix.r-version }}
-      - name: Install dependencies
-        run: |
-          install.packages(c("remotes", "rcmdcheck"))
-          remotes::install_deps(dependencies = TRUE)
-        shell: Rscript {0}
-      - name: Check
-        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
-        shell: Rscript {0}
-
-      - name: Run R script
-        run: RScript install_r_libraryt.r
+          name: my-output-artifact
+          path: output/
