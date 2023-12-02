@@ -1,10 +1,10 @@
-from lib.cleanup import Output
+# from lib.cleanup import Output
 
 from src import part_1_free_energy
 
 
 def main():
-    Output.clean()
+    # Output.clean()
     print("\n", "#" * 25 + " Spec " + "#" * 26, "\n")
     part_1_free_energy.calculate()
 
