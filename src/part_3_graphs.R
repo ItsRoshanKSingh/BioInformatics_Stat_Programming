@@ -25,7 +25,6 @@ non_promoter_regions <- read.csv(
 promoter_region_avg <- colMeans(promoter_regions)
 non_promoter_region_avg <- colMeans(non_promoter_regions)
 
-
 # Create and Store the Average Free Energy value of Promoter and Non-Promoter
 write.csv(
     promoter_region_avg,
@@ -35,7 +34,6 @@ write.csv(
 success_message(
     "Promoter avg Free Energy value added in \033[93m 'output/files/promoter_avg.csv'"
 )
-
 write.csv(
     non_promoter_region_avg,
     file = "output/files/non_promoter_avg.csv",
@@ -73,26 +71,32 @@ invisible({
 })
 success_message("Promoter/Non-Promoter Average Line Plot added to \033[93m 'output/graph/PromoterVsNonPromoter_Avg_LinePlot.png")
 
+# Perform independent samples t-test
 t_test_result <- t.test(promoter_region_avg, non_promoter_region_avg)
 
-# Open a text file for writing (replace "output.txt" with your desired file path)
 output_file <- "output/files/t-test-result.txt"
 file_conn <- file(output_file, "w")
 
-# Write t-test results to the file
+cat("--------------------------------------------------------\n", file = file_conn)
+cat("--------------------------------------------------------\n", file = file_conn)
+cat("Null Hypothesis (H0): There is no significant difference between the means of the promoter and non-promoter regions.\n", file = file_conn)
+cat("Alternative Hypothesis (H1): There is a significant difference between the means of the promoter and non-promoter regions.\n",file = file_conn)
+# # Write t-test results to the file
+cat("--------------------------------------------------------\n", file = file_conn)
 cat("T-Test Results:\n", file = file_conn)
 cat("--------------------------------------------------------\n", file = file_conn)
-cat("t statistic: ", t_test_result$statistic, "\n", file = file_conn)
-cat("degrees of freedom: ", t_test_result$parameter, "\n", file = file_conn)
+cat("t statistic(t): ", t_test_result$statistic, "\n", file = file_conn)
+cat("degrees of freedom(dm): ", t_test_result$parameter, "\n", file = file_conn)
 cat("p-value: ", t_test_result$p.value, "\n", file = file_conn)
+cat("Promoter mean: ",t_test_result$estimate[1], "\n", file = file_conn)
+cat("Non-Promoter mean: ",t_test_result$estimate[2], "\n", file = file_conn)
 cat("--------------------------------------------------------\n", file = file_conn)
 
 # Interpret the results and write to the file
-alpha <- 0.05 # significance level
-if (t_test_result$p.value < alpha) {
-    cat("There is a statistically significant difference between promoter and non-promoter regions.\n", file = file_conn)
+if (t_test_result$p.value > 0.05) {
+    cat("Fail To Reject Null Hypothesis\n", file = file_conn)
 } else {
-    cat("There is no statistically significant difference between promoter and non-promoter regions.\n", file = file_conn)
+    cat("Null Hypothesis is Reject. And Alternate Hypothesis is Accepted.\n", file = file_conn)
 }
 
 # Close the file connection
