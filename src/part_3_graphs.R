@@ -15,6 +15,7 @@ promoter_regions <- read.csv(
     "output/files/promoter_regions.csv",
     header = FALSE
 )
+
 non_promoter_regions <- read.csv(
     "output/files/non_promoter_regions.csv",
     header = FALSE
@@ -48,31 +49,20 @@ success_message(
 x_values <- seq(-150, 49, by = 1)
 
 
-# Create and Save Promoter Average Line Plot
+# Create and Save Promoter/Non-Promoter Average Line Plot
 invisible({
     png(
-        "output/graph/promoter_avg_line_plot.png",
-        width = 800, height = 600, units = "px", pointsize = 12, res = 96
+        "output/graph/PromoterVsNonPromoter_Avg_LinePlot.png",
+        width = 1200, height = 750, units = "px", pointsize = 12, res = 96
     )
-    plot(
+    parameter <- par(mfrow = c(1, 2))
+    parameter <- plot(
         x_values, promoter_region_avg,
         type = "l", col = "blue",
         xlab = "Sequence Position", ylab = "Average Free Energy",
         main = "Line Graph of Promoter Region Average Free Energy"
     )
-    # lines(non_promoter_region_avg, type = "l", col = "red")
-    grid()
-    dev.off()
-})
-success_message("Promoter Average Line Plot added to \033[93m 'output/graph/promoter_avg_line_plot.png")
-
-# # Create and Save Non-Promoter Average Line Plot
-invisible({
-    png(
-        "output/graph/non_promoter_avg_line_plot.png",
-        width = 800, height = 600, units = "px", pointsize = 12, res = 96
-    )
-    plot(
+    parameter <- plot(
         x_values, non_promoter_region_avg,
         type = "l", col = "red",
         xlab = "Sequence Position", ylab = "Promoter Average Free Energy",
@@ -81,12 +71,12 @@ invisible({
     grid()
     dev.off()
 })
-success_message("Non Promoter Average Line Plot added to \033[93m 'output/graph/non_promoter_avg_line_plot.png")
+success_message("Promoter/Non-Promoter Average Line Plot added to \033[93m 'output/graph/PromoterVsNonPromoter_Avg_LinePlot.png")
 
 t_test_result <- t.test(promoter_region_avg, non_promoter_region_avg)
 
 # Open a text file for writing (replace "output.txt" with your desired file path)
-output_file <- "t-test-result.txt"
+output_file <- "output/files/t-test-result.txt"
 file_conn <- file(output_file, "w")
 
 # Write t-test results to the file
@@ -109,4 +99,4 @@ if (t_test_result$p.value < alpha) {
 close(file_conn)
 
 # Confirm that the file has been written
-success_message("Results written to \033[93m 't-test-result.txt'\n")
+success_message("Results written to \033[93m 'output/files/t-test-result.txt'\n")

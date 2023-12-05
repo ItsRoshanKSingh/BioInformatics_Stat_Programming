@@ -39,9 +39,6 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Run main Python script
-        run: python main_script.py
-
       - name: Cache R dependencies
         uses: actions/cache@v2
         with:
@@ -56,15 +53,8 @@ jobs:
         with:
           r-version: '4.1.0' 
 
-      - name: Install R dependencies
-        run: Rscript install_r_library.R
-      
-      - name: Run R script
-        run: |
-          Rscript src/part_3_graphs.R
-          Rscript src/part_4_5.r
-      
-      
+      - name: Run Project
+        run: run_project.sh
 
       - name: Create artifact
         uses: actions/upload-artifact@v2

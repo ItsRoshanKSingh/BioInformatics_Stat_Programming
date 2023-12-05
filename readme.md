@@ -24,7 +24,3 @@
 # Cucumber Reports:
 - All report will get generated at the end of project execution in console
 - All the Report graphs will be saved under "/output" folder
-
-###
-# Project Slide:
-https://docs.google.com/presentation/d/14btHADouNFdeSETw2fD-dCrwCFG-4ZEWm_c62S7CS1o/edit?usp=sharing

@@ -1,6 +1,7 @@
 import time
 from lib import color
-import os
+from project_dir import *
+
 
 def get_free_energy(di_seq: str):
     energy_mapping = {
@@ -29,13 +30,13 @@ def calculate():
     print(f"{color.YELLOW} scanning...{color.RESET}", end="\r")
 
     energy_values = []
-    with open(os.path.join('resources', 'ecoli_k12.fna'), "r") as fasta_file:
+    with open(os.path.join("resources", "ecoli_k12.fna"), "r") as fasta_file:
         fasta_seq = "".join(fasta_file.readlines()[1:]).replace("\n", "")
         for index, current_pair in enumerate(zip(fasta_seq, fasta_seq[1:])):
             di_seq = "".join(current_pair)
             free_energy = get_free_energy(di_seq)
             energy_values.append(str(free_energy))
-    
+
     with open(os.path.join("output", "files", "free_energy.txt"), "w") as output_file:
         output_file.write(",".join(energy_values))
         print(

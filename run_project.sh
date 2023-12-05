@@ -1,8 +1,12 @@
 #!/bin/bash
 
-# Install dependencies
-python -m pip install -r requirements.txt
+Rscript ./install_r_library.R
+clear
 
-# Run your Python scripts
-python ./src/free_energy.py
-python ./src/project.py
+python ./main_script.py
+Rscript ./src/part_3_graphs.R
+Rscript ./src/part_4_5.r
+
+echo ""
+echo "################### End of Execution #####################"
+echo ""
