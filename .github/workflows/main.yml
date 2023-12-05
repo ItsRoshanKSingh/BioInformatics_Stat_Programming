@@ -56,11 +56,8 @@ jobs:
 
       - name: Run Project
         run: |
-          if exist run_project.bat (
-            run_project.bat
-          ) else (
-            echo "run_project.bat not found!"
-          )
+         if (Test-Path .\run_project.bat) { .\run_project.bat }
+         else { Write-Host "run_project.bat not found!" }
 
       - name: Create artifact
         uses: actions/upload-artifact@v2
