@@ -53,19 +53,30 @@ invisible({
         "output/graph/PromoterVsNonPromoter_Avg_LinePlot.png",
         width = 1200, height = 750, units = "px", pointsize = 12, res = 96
     )
-    parameter <- par(mfrow = c(1, 2))
-    parameter <- plot(
+
+    par(mfrow = c(1, 2))
+
+    plot(
         x_values, promoter_region_avg,
         type = "l", col = "blue",
         xlab = "Sequence Position", ylab = "Average Free Energy",
-        main = "Line Graph of Promoter Region Average Free Energy"
+        main = "Promoter VS NonPromoter Average Free Energy",
+        ylim = c(-1.48, -1.15)
     )
-    parameter <- plot(
+
+    grid(col = "gray")
+    lines(
+        x_values, non_promoter_region_avg,
+        type = "l", col = "red"
+    )
+
+    plot(
         x_values, non_promoter_region_avg,
         type = "l", col = "red",
-        xlab = "Sequence Position", ylab = "Promoter Average Free Energy",
+        xlab = "Sequence Position", ylab = "Non-Promoter Average Free Energy",
         main = "Line Graph of Non-Promoter Region Average Free Energy"
     )
+
     grid()
     dev.off()
 })
@@ -80,7 +91,7 @@ file_conn <- file(output_file, "w")
 cat("--------------------------------------------------------\n", file = file_conn)
 cat("--------------------------------------------------------\n", file = file_conn)
 cat("Null Hypothesis (H0): There is no significant difference between the means of the promoter and non-promoter regions.\n", file = file_conn)
-cat("Alternative Hypothesis (H1): There is a significant difference between the means of the promoter and non-promoter regions.\n",file = file_conn)
+cat("Alternative Hypothesis (H1): There is a significant difference between the means of the promoter and non-promoter regions.\n", file = file_conn)
 # # Write t-test results to the file
 cat("--------------------------------------------------------\n", file = file_conn)
 cat("T-Test Results:\n", file = file_conn)
@@ -88,8 +99,8 @@ cat("--------------------------------------------------------\n", file = file_co
 cat("t statistic(t): ", t_test_result$statistic, "\n", file = file_conn)
 cat("degrees of freedom(dm): ", t_test_result$parameter, "\n", file = file_conn)
 cat("p-value: ", t_test_result$p.value, "\n", file = file_conn)
-cat("Promoter mean: ",t_test_result$estimate[1], "\n", file = file_conn)
-cat("Non-Promoter mean: ",t_test_result$estimate[2], "\n", file = file_conn)
+cat("Promoter mean: ", t_test_result$estimate[1], "\n", file = file_conn)
+cat("Non-Promoter mean: ", t_test_result$estimate[2], "\n", file = file_conn)
 cat("--------------------------------------------------------\n", file = file_conn)
 
 # Interpret the results and write to the file
